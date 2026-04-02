@@ -45,6 +45,9 @@ const Hero = () => {
           <a href="mailto:dilumvishvajith18@gmail.com" className="hero-social__link" aria-label="Email">
             Email
           </a>
+          <a href="https://www.linkedin.com/in/dilum-vishvajith-28a03135b" target="_blank" rel="noreferrer" className="hero-social__link" aria-label="LinkedIn Profile">
+            LinkedIn
+          </a>
           <a href="tel:0777498608" className="hero-social__link" aria-label="Phone">
             0777498608
           </a>
