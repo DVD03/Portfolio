@@ -1,3 +1,10 @@
-.app-container {
-  /* You can add any app specific wrappers here */
+/* App-level layout */
+.app-main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }

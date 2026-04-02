@@ -1,90 +1,160 @@
+/* ================= ===========================================
+   CRYSTAL & ORBIT HERO
+   ============================================================ */
 .hero-section {
+  position: relative;
+  min-height: 100svh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-height: 80vh;
-  gap: 4rem;
+  justify-content: center;
+  padding-top: 100px;
 }
 
-.hero-content {
-  flex: 1;
-}
-
-.hero-title {
-  font-size: 4rem;
-  line-height: 1.1;
-  margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-  font-size: 1.5rem;
-  color: var(--text-muted);
-  font-weight: 500;
-  margin-bottom: 2rem;
-}
-
-.hero-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  max-width: 500px;
-  margin-bottom: 2.5rem;
-  color: var(--text-muted);
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-}
-
-.hero-image-wrapper {
+.hero-container {
   position: relative;
-  flex: 1;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px !important;
+  perspective: 1000px;
+}
+
+/* Portrait with Orbital Rings */
+.hero-portrait-wrapper {
+  margin-bottom: 5rem;
   display: flex;
   justify-content: center;
+}
+
+.hero-portrait {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  transition: transform 0.6s var(--ease-expo);
+  transform-style: preserve-3d;
 }
 
-.hero-image-glow {
-  position: absolute;
-  width: 350px;
-  height: 350px;
-  background: var(--accent);
+.hero-portrait:hover {
+  transform: rotateX(12deg) rotateY(12deg);
+}
+
+.hero-portrait__inner {
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
-  z-index: 0;
-  animation: pulse 4s infinite alternate;
+  overflow: hidden;
+  border: 1px solid var(--border-active);
+  box-shadow: var(--shadow-deep), 0 0 50px rgba(139, 92, 246, 0.3);
+  z-index: 5;
+  background: var(--bg-surface);
+  position: relative;
 }
 
-.hero-image {
-  width: 350px;
-  height: 350px;
+.hero-portrait__inner img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  border: 8px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-  transition: all 0.5s ease-in-out;
+  transform: scale(1.4); /* Zoom in to hide the background text */
+  object-position: center 15%; /* Focus on the face */
 }
 
-.hero-image:hover {
+
+/* Rotating Orbits */
+.portrait-orbit {
+  position: absolute;
   border-radius: 50%;
-  transform: scale(1.05) rotate(5deg);
-  border-color: var(--accent);
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes pulse {
-  0% { transform: scale(0.8); opacity: 0.1; }
-  100% { transform: scale(1.2); opacity: 0.2; }
+.portrait-orbit--1 {
+  inset: -15px;
+  border: 1px dashed var(--accent-cyan);
+  opacity: 0.3;
+  animation: rotateClockwise 20s linear infinite;
 }
 
-@media (max-width: 900px) {
-  .hero-section {
-    flex-direction: column-reverse;
-    text-align: center;
-    padding-top: 4rem;
-  }
-  .hero-title { font-size: 3rem; }
-  .hero-actions { justify-content: center; }
-  .hero-text { margin: 0 auto 2.5rem; }
+.portrait-orbit--2 {
+  inset: -30px;
+  border: 1px solid var(--border-glass);
+  background: radial-gradient(circle, var(--aura-indigo) 0%, transparent 70%);
+  opacity: 0.15;
+  animation: pulseAura 4s infinite alternate ease-in-out;
+}
+
+@keyframes rotateClockwise {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulseAura {
+  from { transform: scale(0.95); opacity: 0.1; }
+  to   { transform: scale(1.1); opacity: 0.2; }
+}
+
+/* Headline */
+.hero-headline {
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+/* Sub-headline */
+.hero-subheadline {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 3.5rem;
+}
+
+/* CTAs */
+.hero-cta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+/* Social proof links */
+.hero-social {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.hero-social__link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.02);
+  transition: var(--transition-base);
+}
+
+.hero-social__link:hover {
+  color: var(--text-primary);
+  border-color: var(--border-active);
+  background: rgba(139, 92, 246, 0.05);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .hero-portrait { width: 180px; height: 180px; }
+  .hero-portrait__inner { width: 130px; height: 130px; }
 }
